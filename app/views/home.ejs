@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Lista de Tarefas</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <link rel="stylesheet" href="public/assets/style/style.css"
+        <meta charset="UTF-8">        
+        
+    </head>
+    <body>
+        <%if(tarefas){%> 
+        <div class="tabela">
+        <table class="table" >
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Resumo</th>
+                <th scope="col">Data</th>                
+              </tr>
+            </thead>
+            <tbody>
+                <%for (let i = 0; i < tarefas.length;i++){%>
+              <tr>
+                <th scope="row"><%=tarefas[i].id%></th>
+                <td><%=tarefas[i].nome%></td>
+                <td><%=tarefas[i].resumo%></td>
+                <% var dataLimite = tarefas[i].data_limite%>
+                <td><%=dataLimite.getDate() + "/" + dataLimite.getMonth() +  "/" + dataLimite.getFullYear()%></td>
+                <td>  <a class="link" href='/deletar?id=<%=tarefas[i].id%>'>  <button type="button" class="btn btn-danger"> Apagar </button>   </a>  </td>
+              </tr>     
+              <%}%>        
+            </tbody>
+          </table>          
+                
+          <%}%>
+          
+
+          <a href="/frm" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Cadastrar Tarefa</a>
+
+        </div>
+
+        <!-- Working with form in a modal-->
+        <div class="modal" tabindex="-1" role="dialog">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p>Modal body text goes here.</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+    </body>
+</html>
