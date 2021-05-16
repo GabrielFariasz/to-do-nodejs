@@ -10,6 +10,8 @@ app.use('/public' , express.static('public'))
 
 consign().include('app/routers')
             .then('app/models')
+            .then('configs/dbConnection.js')
+            .then('app/controllers')
             .into(app)
     
 app.set('view engine', 'ejs')
